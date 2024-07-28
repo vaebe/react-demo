@@ -5,7 +5,7 @@ import { TodoList } from './components/TodoList'
 import { AddTodo } from './components/AddTodo'
 import type { TodoListItemInfo } from '@/types'
 
-export function TodoListBox() {
+export default function TodoListBox() {
   const [todoList, setTodoList] = useState<TodoListItemInfo[]>([])
 
   const addTodo = (content: string) => {

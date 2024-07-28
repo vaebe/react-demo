@@ -1,11 +1,9 @@
-import { TodoListBox } from '@/views/todoList'
+import TodoListBox from '@/views/todoList'
 
-function App() {
+export default function Root() {
   return (
     <div className="root-box">
       <TodoListBox></TodoListBox>
     </div>
   )
 }
-
-export default App
