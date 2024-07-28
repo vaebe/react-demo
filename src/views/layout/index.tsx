@@ -1,5 +1,6 @@
-import {Outlet} from 'react-router-dom'
-export default  function Layout () {
+import { Outlet } from 'react-router-dom'
+
+export default function Layout() {
   return (
     <div>
       <p>admin</p>
@@ -8,4 +9,4 @@ export default  function Layout () {
       </div>
     </div>
   )
-} 
+}

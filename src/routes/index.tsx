@@ -1,10 +1,10 @@
 import { lazy } from 'react'
-import { createBrowserRouter,Navigate} from 'react-router-dom'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
 import Layout from '@/views/layout'
 
 const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     Component: Layout,
     children: [
       {
@@ -12,19 +12,19 @@ const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
         element: <Navigate to="todoList" />, // 默认重定向到 todoList
       },
       {
-        path: "todoList",
-        Component: lazy( () => import('@/views/todoList/index.tsx')),
+        path: 'todoList',
+        Component: lazy(() => import('@/views/todoList/index.tsx')),
       },
       {
-        path: "test",
-        Component: lazy( () => import('@/views/test.tsx')),
+        path: 'test',
+        Component: lazy(() => import('@/views/test.tsx')),
       },
     ],
-  }
-]);
+  },
+])
 
 if (import.meta.hot) {
-  import.meta.hot.dispose(() => router.dispose());
+  import.meta.hot.dispose(() => router.dispose())
 }
 
-export default router;
+export default router

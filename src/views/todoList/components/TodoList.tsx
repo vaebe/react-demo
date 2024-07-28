@@ -5,7 +5,7 @@ interface Props {
   list: TodoListItemInfo[]
   delItem: (id: string) => void
 }
-export function TodoList({ list = [], delItem }: Props) {
+export function TodoList({ list, delItem }: Props) {
   const listContent = list.map ((item, index) => {
     return <TodoListItem key={item.id} info={item} sort={index} delItem={delItem}></TodoListItem>
   })
