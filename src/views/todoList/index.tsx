@@ -1,6 +1,6 @@
 'use client'
 import { TodoList } from "./components/TodoList";
-import { AddTodoList } from "./components/AddTodoList";
+import { AddTodo } from "./components/AddTodo";
 import { useState } from "react";
 import { TodoListItemInfo } from '@/types'
 import { v4 as uuidv4 } from 'uuid';
@@ -20,7 +20,7 @@ export const TodoListBox = () => {
   return (
     <div className="">
       <h1 className="text-4xl font-bold mb-2 bg-amber-200">待办列表</h1>
-      <AddTodoList addTodo={addTodo}></AddTodoList>
+      <AddTodo addTodo={addTodo}></AddTodo>
 
       <div className="w-10/12 mx-auto">
         <TodoList list={todoList} delItem={delItem}></TodoList>
