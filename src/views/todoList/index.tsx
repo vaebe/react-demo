@@ -1,16 +1,15 @@
 'use client'
-import { TodoList } from "./components/TodoList";
-import { AddTodo } from "./components/AddTodo";
-import { useState } from "react";
-import { TodoListItemInfo } from '@/types'
-import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { TodoList } from './components/TodoList'
+import { AddTodo } from './components/AddTodo'
+import type { TodoListItemInfo } from '@/types'
 
-export const TodoListBox = () => {
-
+export function TodoListBox() {
   const [todoList, setTodoList] = useState<TodoListItemInfo[]>([])
 
   const addTodo = (content: string) => {
-    setTodoList([...todoList, { id: uuidv4(), content, status: "todo" }])
+    setTodoList([...todoList, { id: uuidv4(), content, status: 'todo' }])
   }
 
   const delItem = (id: string) => {

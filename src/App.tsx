@@ -1,7 +1,8 @@
 import { TodoListBox } from '@/views/todoList'
+
 function App() {
   return (
-    <div className='root-box'>
+    <div className="root-box">
       <TodoListBox></TodoListBox>
     </div>
   )
