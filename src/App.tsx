@@ -1,13 +1,9 @@
-import './App.css'
-
+import { TodoListBox } from '@/views/todoList'
 function App() {
   return (
-    <>
-      <div className='box'>
-        <p>dasdasd</p>
-        <p>s1212</p>
-       </div>
-    </>
+    <div className='root-box'>
+      <TodoListBox></TodoListBox>
+    </div>
   )
 }
 
