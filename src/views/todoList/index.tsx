@@ -18,10 +18,10 @@ export default function TodoListBox() {
 
   return (
     <div className="">
-      <h1 className="text-4xl font-bold mb-2 bg-amber-200">待办列表</h1>
+      <h1 className="mb-2 bg-amber-200 text-4xl font-bold">待办列表</h1>
       <AddTodo addTodo={addTodo}></AddTodo>
 
-      <div className="w-10/12 mx-auto">
+      <div className="mx-auto w-10/12">
         <TodoList list={todoList} delItem={delItem}></TodoList>
       </div>
     </div>

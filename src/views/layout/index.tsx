@@ -14,8 +14,8 @@ const App: React.FC = () => {
         <MenuBox></MenuBox>
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} className='flex items-center'>
-          <p className=' text-2xl ml-2'>react demo</p>
+        <Header style={{ padding: 0, background: colorBgContainer }} className="flex items-center">
+          <p className="ml-2 text-2xl">react demo</p>
         </Header>
         <Content style={{ margin: '0 16px' }}>
           <Outlet></Outlet>

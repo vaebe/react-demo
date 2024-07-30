@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react'
 
 function calculateWinner(squares: string[]) {
   const lines = [
@@ -9,15 +9,15 @@ function calculateWinner(squares: string[]) {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
-  ];
+    [2, 4, 6],
+  ]
   for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
+    const [a, b, c] = lines[i]
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return squares[a]
     }
   }
-  return null;
+  return null
 }
 
 interface SquareProps {
@@ -27,8 +27,9 @@ interface SquareProps {
 function Square({ value, squareClick }: SquareProps) {
   return (
     <div
-      className="w-[100px] h-[100px] border border-black border-solid flex justify-center items-center cursor-pointer"
-      onClick={squareClick}>
+      className="h-[100px] w-[100px] flex cursor-pointer items-center justify-center border border-black border-solid"
+      onClick={squareClick}
+    >
       <p>{value}</p>
     </div>
   )
@@ -45,23 +46,25 @@ function Board({ xIsNext, squares, onPlay }: BoardProps) {
       return
     }
 
-    const newSquares = squares.slice();
+    const newSquares = squares.slice()
 
     if (xIsNext) {
-      newSquares[i] = 'X';
-    } else {
-      newSquares[i] = 'O';
+      newSquares[i] = 'X'
+    }
+    else {
+      newSquares[i] = 'O'
     }
 
     onPlay(newSquares)
   }
 
-  const winner = calculateWinner(squares);
-  let status;
+  const winner = calculateWinner(squares)
+  let status
   if (winner) {
-    status = '获胜者: ' + winner;
-  } else {
-    status = '下一个: ' + (xIsNext ? 'X' : 'O');
+    status = `获胜者: ${winner}`
+  }
+  else {
+    status = `下一个: ${xIsNext ? 'X' : 'O'}`
   }
 
   return (
@@ -70,7 +73,7 @@ function Board({ xIsNext, squares, onPlay }: BoardProps) {
         {status}
       </div>
 
-      <div className="grid grid-cols-3 w-[300px] text-4xl mx-auto font-bold">
+      <div className="grid grid-cols-3 mx-auto w-[300px] text-4xl font-bold">
         {squares.map((_, index) => (<Square key={index} value={squares[index]} squareClick={() => { handleClick(index) }}></Square>))}
       </div>
     </>
@@ -79,39 +82,40 @@ function Board({ xIsNext, squares, onPlay }: BoardProps) {
 
 export default function Game() {
   // 使用二维数组存储棋盘数据-默认初始化空的棋盘
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [history, setHistory] = useState([Array(9).fill(null)])
 
   // 保存当前的棋盘位置
-  const [curIndex, setCurIndex] = useState(0);
+  const [curIndex, setCurIndex] = useState(0)
 
   // 判断下一个应该输入什么 x  or o
-  const xIsNext = curIndex % 2 === 0;
+  const xIsNext = curIndex % 2 === 0
 
   // 当前的棋盘数组 - setCurIndex 默认等于 0 初始化空棋盘
-  const currentSquares = history[curIndex];
+  const currentSquares = history[curIndex]
 
   function handlePlay(nextSquares: string[]) {
     // 获取棋盘历史数据 - 在指定的位置插入棋盘数据
-    const nextHistory = [...history.slice(0, curIndex + 1), nextSquares];
+    const nextHistory = [...history.slice(0, curIndex + 1), nextSquares]
 
     // 更新棋盘历史数据
-    setHistory(nextHistory);
+    setHistory(nextHistory)
 
     // 设置当前棋盘位置 - 下到了哪一步
-    setCurIndex(nextHistory.length - 1);
+    setCurIndex(nextHistory.length - 1)
   }
 
   const moves = history.map((_, index) => {
-    let description;
+    let description
     if (index > 0) {
-      description = '移动到' + index;
-    } else {
-      description = '开始状态';
+      description = `移动到${index}`
+    }
+    else {
+      description = '开始状态'
     }
     return (
       <p className="mb-2 cursor-pointer" key={index} onClick={() => setCurIndex(index)}>{description}</p>
-    );
-  });
+    )
+  })
 
   return (
     <div className="flex justify-center">
@@ -122,5 +126,5 @@ export default function Game() {
         {moves}
       </div>
     </div>
-  );
+  )
 }
