@@ -71,7 +71,7 @@ function Board({ xIsNext, squares, onPlay }: BoardProps) {
       </div>
 
       <div className="grid grid-cols-3 w-[300px] text-4xl mx-auto font-bold">
-        {squares.map((_, index) => (<Square value={squares[index]} squareClick={() => { handleClick(index) }}></Square>))}
+        {squares.map((_, index) => (<Square key={index} value={squares[index]} squareClick={() => { handleClick(index) }}></Square>))}
       </div>
     </>
   )

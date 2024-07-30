@@ -1,11 +1,15 @@
-import { lazy } from 'react'
+import { Suspense, lazy } from 'react'
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 import Layout from '@/views/layout'
 
 const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
   {
     path: '/',
-    Component: Layout,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Layout />
+      </Suspense>
+    ),
     children: [
       {
         index: true,
