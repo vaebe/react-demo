@@ -1,5 +1,4 @@
 import { useState } from "react";
-import {Button} from 'antd'
 
 function calculateWinner(squares: string[]) {
   const lines = [
@@ -35,11 +34,12 @@ function Square({ value, squareClick }: SquareProps) {
   )
 }
 
-export default function Board() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-
-  const [xIsNext, setXIsNext] = useState(true)
-
+interface BoardProps {
+  xIsNext: boolean
+  squares: string[]
+  onPlay: (list: string[]) => void
+}
+function Board({ xIsNext, squares, onPlay }: BoardProps) {
   function handleClick(i: number) {
     if (squares[i] || calculateWinner(squares)) {
       return
@@ -53,15 +53,7 @@ export default function Board() {
       newSquares[i] = 'O';
     }
 
-    setSquares(newSquares);
-
-    setXIsNext(!xIsNext)
-  }
-
-  // 重置数据
-  function resetData() {
-    setSquares(Array(9).fill(null));
-    setXIsNext(true);
+    onPlay(newSquares)
   }
 
   const winner = calculateWinner(squares);
@@ -74,22 +66,61 @@ export default function Board() {
 
   return (
     <>
-      <div className="my-2 text-center">
-        <p className="text-2xl">{status}</p>
-        <Button onClick={resetData}>重置</Button>
+      <div className="my-2 text-center text-2xl">
+        {status}
       </div>
+
       <div className="grid grid-cols-3 w-[300px] text-4xl mx-auto font-bold">
-      <Square value={squares[0]} squareClick={() => { handleClick(0) }}></Square>
-      <Square value={squares[1]} squareClick={() => { handleClick(1) }}></Square>
-      <Square value={squares[2]} squareClick={() => { handleClick(2) }}></Square>
-      <Square value={squares[3]} squareClick={() => { handleClick(3) }}></Square>
-      <Square value={squares[4]} squareClick={() => { handleClick(4) }}></Square>
-      <Square value={squares[5]} squareClick={() => { handleClick(5) }}></Square>
-      <Square value={squares[6]} squareClick={() => { handleClick(6) }}></Square>
-      <Square value={squares[7]} squareClick={() => { handleClick(7) }}></Square>
-      <Square value={squares[8]} squareClick={() => { handleClick(8) }}></Square>
-    </div>
+        {squares.map((_, index) => (<Square value={squares[index]} squareClick={() => { handleClick(index) }}></Square>))}
+      </div>
     </>
-  
   )
+}
+
+export default function Game() {
+  // 使用二维数组存储棋盘数据-默认初始化空的棋盘
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+
+  // 保存当前的棋盘位置
+  const [curIndex, setCurIndex] = useState(0);
+
+  // 判断下一个应该输入什么 x  or o
+  const xIsNext = curIndex % 2 === 0;
+
+  // 当前的棋盘数组 - setCurIndex 默认等于 0 初始化空棋盘
+  const currentSquares = history[curIndex];
+
+  function handlePlay(nextSquares: string[]) {
+    // 获取棋盘历史数据 - 在指定的位置插入棋盘数据
+    const nextHistory = [...history.slice(0, curIndex + 1), nextSquares];
+
+    // 更新棋盘历史数据
+    setHistory(nextHistory);
+
+    // 设置当前棋盘位置 - 下到了哪一步
+    setCurIndex(nextHistory.length - 1);
+  }
+
+  const moves = history.map((_, index) => {
+    let description;
+    if (index > 0) {
+      description = '移动到' + index;
+    } else {
+      description = '开始状态';
+    }
+    return (
+      <p className="mb-2 cursor-pointer" key={index} onClick={() => setCurIndex(index)}>{description}</p>
+    );
+  });
+
+  return (
+    <div className="flex justify-center">
+      <div className="">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="ml-4 mt-10">
+        {moves}
+      </div>
+    </div>
+  );
 }
