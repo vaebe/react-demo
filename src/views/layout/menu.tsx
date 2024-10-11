@@ -4,7 +4,8 @@ import {
   PieChartOutlined,
 } from '@ant-design/icons'
 import { Menu } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -27,11 +28,13 @@ export default function MenuBox() {
     navigate(e.key)
   }
 
+  const defaultSelectedKeys = [useLocation().pathname]
+
   return (
     <Menu
       onClick={onClick}
       theme="dark"
-      defaultSelectedKeys={['/todoList']}
+      defaultSelectedKeys={defaultSelectedKeys}
       mode="inline"
       items={items}
     />
