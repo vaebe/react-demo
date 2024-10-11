@@ -23,10 +23,6 @@ const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
         path: 'ticTacToe',
         Component: lazy(() => import('@/views/ticTacToe/index.tsx')),
       },
-      {
-        path: 'test',
-        Component: lazy(() => import('@/views/test.tsx')),
-      },
     ],
   },
 ])
