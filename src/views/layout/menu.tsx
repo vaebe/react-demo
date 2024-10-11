@@ -4,7 +4,6 @@ import {
   PieChartOutlined,
 } from '@ant-design/icons'
 import { Menu } from 'antd'
-import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 type MenuItem = Required<MenuProps>['items'][number]
