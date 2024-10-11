@@ -1,6 +1,6 @@
-import { Suspense, lazy } from 'react'
-import { Navigate, createBrowserRouter } from 'react-router-dom'
 import Layout from '@/views/layout'
+import { lazy, Suspense } from 'react'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
   {

@@ -1,6 +1,6 @@
-import { Outlet } from 'react-router-dom'
-import React, { useState } from 'react'
 import { Layout, theme } from 'antd'
+import React, { useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import MenuBox from './menu'
 
 const { Header, Content, Sider } = Layout

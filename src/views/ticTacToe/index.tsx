@@ -82,7 +82,7 @@ function Board({ xIsNext, squares, onPlay }: BoardProps) {
 
 export default function Game() {
   // 使用二维数组存储棋盘数据-默认初始化空的棋盘
-  const [history, setHistory] = useState([Array(9).fill(null)])
+  const [history, setHistory] = useState<string[][]>([Array.from({ length: 9 }).fill('') as string[]])
 
   // 保存当前的棋盘位置
   const [curIndex, setCurIndex] = useState(0)

@@ -1,9 +1,9 @@
 import type { MenuProps } from 'antd'
-import { Menu } from 'antd'
 import {
   DesktopOutlined,
   PieChartOutlined,
 } from '@ant-design/icons'
+import { Menu } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 type MenuItem = Required<MenuProps>['items'][number]

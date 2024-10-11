@@ -1,5 +1,5 @@
-import { Button } from 'antd'
 import type { TodoListItemInfo } from '@/types'
+import { Button } from 'antd'
 
 interface Props {
   info: TodoListItemInfo

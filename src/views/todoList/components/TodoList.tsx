@@ -1,5 +1,5 @@
-import { TodoListItem } from './TodoListItem'
 import type { TodoListItemInfo } from '@/types'
+import { TodoListItem } from './TodoListItem'
 
 interface Props {
   list: TodoListItemInfo[]
