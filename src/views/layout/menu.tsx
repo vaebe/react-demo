@@ -19,6 +19,11 @@ const items: MenuItem[] = [
     label: '井字棋',
     icon: <PieChartOutlined />,
   },
+  {
+    key: '/componentsView',
+    label: '组件展示',
+    icon: <PieChartOutlined />,
+  },
 ]
 
 export default function MenuBox() {
