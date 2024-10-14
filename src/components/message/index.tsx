@@ -1,5 +1,5 @@
 import type { CSSProperties, FC, ReactNode } from 'react'
-import { useTimer } from '@/components/message/useTimer'
+import { useTimer } from '@/components/Message/useTimer'
 import { forwardRef, useImperativeHandle, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
