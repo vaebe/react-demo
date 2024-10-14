@@ -15,8 +15,10 @@ export interface MessageProps {
   id?: number
 }
 
+// todo 更新需要重置关闭时间
 const MessageItem: FC<MessageProps> = (item) => {
   const { id, duration, onClose, content } = item
+
   const { onMouseEnter, onMouseLeave } = useTimer({
     id: id!,
     duration,
@@ -77,6 +79,7 @@ export const MessageProvider = forwardRef<MessageRef, object>((_props, ref) => {
   )
 
   const el = useMemo(() => {
+    // 当元素存在时不在重复创建元素
     if (document.querySelector('.wrapper')) {
       return document.querySelector('.wrapper')!
     }

@@ -36,7 +36,7 @@ function useStore() {
         return
 
       setMessageList((preState) => {
-        const nextState = { ...preState }
+        const nextState = [...preState]
         const index = findMessage(nextState, id)
 
         if (index !== -1) {
