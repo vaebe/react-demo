@@ -1,5 +1,6 @@
 import { MessafeView } from './MessafeView.tsx'
 import { OtherView } from './Other.tsx'
+import { PopoverView } from './PopoverView.tsx'
 
 export default function ComponentsView() {
   return (
@@ -7,6 +8,8 @@ export default function ComponentsView() {
       <OtherView />
 
       <MessafeView />
+
+      <PopoverView />
     </div>
   )
 }
