@@ -1,4 +1,4 @@
-import { useMessage } from '@/components/message/useMessage'
+import { Card, useMessage } from '@/components'
 import { Button } from 'antd'
 import confetti from 'canvas-confetti'
 import { useState } from 'react'
@@ -33,12 +33,12 @@ function MessafeView() {
   }
 
   return (
-    <div>
+    <Card title="message">
       <Button onClick={addMessage}>添加提示信息</Button>
       <Button onClick={upDateMessage}>修改提示信息</Button>
       <Button onClick={removeMessage}>删除最后一个</Button>
       <Button onClick={clearAllMessage}>清除全部</Button>
-    </div>
+    </Card>
   )
 }
 
