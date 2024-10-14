@@ -1,6 +1,6 @@
 import type { CSSProperties, FC, ReactNode } from 'react'
 import { useTimer } from '@/components/message/useTimer'
-import { forwardRef, useMemo } from 'react'
+import { forwardRef, useImperativeHandle, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import useStore from './useStore'
@@ -43,24 +43,23 @@ export const MessageProvider = forwardRef<MessageRef, object>((_props, ref) => {
   const { messageList, add, update, remove, clearAll } = useStore()
 
   // 将 ref 转发出去
-  if ('current' in ref!) {
-    ref.current = {
-      add,
-      update,
-      remove,
-      clearAll,
-    }
-  }
+  // if ('current' in ref!) {
+  //   ref.current = {
+  //     add,
+  //     update,
+  //     remove,
+  //     clearAll,
+  //   }
+  // }
 
-  // 这样写会导致某些情况 ref 为 undefined
-  // useImperativeHandle(ref, () => {
-  //     return {
-  //         add,
-  //         update,
-  //         remove,
-  //         clearAll
-  //     }
-  // }, [])
+  useImperativeHandle(ref, () => {
+      return {
+          add,
+          update,
+          remove,
+          clearAll
+      }
+  }, [])
 
   const messageWrapper = (
     <div className="message-wrapper">
@@ -78,12 +77,8 @@ export const MessageProvider = forwardRef<MessageRef, object>((_props, ref) => {
     </div>
   )
 
+  // 只创建一次元素
   const el = useMemo(() => {
-    // 当元素存在时不在重复创建元素
-    if (document.querySelector('.wrapper')) {
-      return document.querySelector('.wrapper')!
-    }
-
     const el = document.createElement('div')
     el.className = `wrapper`
 
